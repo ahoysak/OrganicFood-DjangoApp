@@ -1,0 +1,50 @@
+ <section class="ftco-section ftco-cart">
+			<div class="container">
+				<div class="row">
+    			<div class="col-md-12 ftco-animate">
+    				<div class="cart-list">
+	    				<table class="table">
+						    <thead class="thead-primary">
+						      <tr class="text-center">
+						        <th>&nbsp;</th>
+						        <th>&nbsp;</th>
+						        <th>Ім'я Продукту</th>
+						        <th>Ціна</th>
+						        <th>Кількість</th>
+						        <th>Всього</th>
+						      </tr>
+						    </thead>
+						    <tbody>
+                            {% if cart  %}
+                            {% else %}
+							<center><p>Повернутись в  <a href="{% url 'shop' %}" >Магазин</a></p></center>
+                            {% for cart in carts  %}
+						      <tr class="text-center">
+						        <td class="product-remove"><a href="{% url 'cart_remove' cart.id %}"><span class="ion-ios-close"></span></a></td>
+
+						        <td class="image-prod"><div class="img" style="background-image:url({{ cart.product.photo.url }});"></div></td>
+
+						        <td class="product-name">
+						        	<h3>{{ cart.product.product_name }}</h3>
+						        	<p>{{ cart.product.about|linebreaks|truncatewords:5}}</p>
+						        </td>
+
+						        <td class="price">{{ cart.product.price }} грн</td>
+
+						        <td class="quantity">
+						        	<div class="input-group mb-3">
+					             	<input type="text" name="quantity" class="quantity form-control input-number" value="{{ cart.quantity }}" min="1" max="100">
+					          	</div>
+					          </td>
+						        <td class="total">{{ cart.sum }} грн</td>
+						      </tr><!-- END TR-->
+
+                            {% endfor %}
+                            {% endif %}
+						    </tbody>
+						  </table>
+					  </div>
+    			</div>
+    		</div>
+            </div>
+		</section>

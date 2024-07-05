@@ -1,0 +1,53 @@
+{% extends 'product/base.html' %}
+{% block content %}
+
+    <div class="hero-wrap hero-bread" style="background-image: url('static/images/bg_1.jpg');">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-0 bread">Готовий Набір від Organic Food</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ftco-section">
+		{% for component in cart_component %}
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-lg-6 mb-5 ftco-animate">
+    				<a href="" class="image-popup"><img src="{{ component.photo_cart.url }}" class="img-fluid" alt="Colorlib Template"></a>
+    			</div>
+    			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
+    				<h3> {{ component.name_cart }}</h3>
+    				<p class="price"><span>{{ component.price_cart }} грн</span></p>
+    				<p>{{component.about_cart }}</p>
+    				<p>Набір: {{component.composition_cart }}</p>
+    				<p>Вага: {{component.weight_cart }} кг</p>
+    				<p>Термін: {{component.expiration_date_cart }}</p>
+    				<p>Країна: {{component.country_category_cart }}</p>
+
+						<div class="row mt-4">
+
+							<div class="w-100"></div>
+							<div class="input-group col-md-6 d-flex mb-3">
+
+	          	</div>
+	          	<div class="w-100"></div>
+	          	<div class="col-md-12">
+	          		<p style="color: #000;">*Кожен продукт в кошику ~1кг. *</p>
+	          		<p style="color: #000;">*Поставляється в окремо запакованих пакетах*</p>
+	          	</div>
+          	</div>
+          	<p><a href="{% url 'confirm' %}" class="btn btn-black py-3 px-5">Купити</a></p></br>
+					</br>
+    			</div>
+    		</div>
+    	</div>
+		{% endfor %}
+    </section>
+<br>
+<br>
+<br>
+
+{% endblock %}

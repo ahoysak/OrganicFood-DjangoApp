@@ -1,0 +1,88 @@
+{% extends 'product/base.html' %}
+
+{% block content %}
+    <center>
+    {% if messages or form.non_field_errors %}
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% else %}
+          {{ form.non_field_errors }}
+        {% endif %}
+    {% endif %}
+    </center>
+              <div class="comment-form-wrap pt-5">
+                  <center><h3 class="mb-5">Особистий кабінет </h3></center>
+                <form action="{% url 'profile' %}" method="post" class="p-5 bg-light">
+                {% csrf_token %}
+                </form>
+              </div>
+    <section class="ftco-section contact-section bg-light">
+      <div class="container">
+      	<div class="row d-flex mb-5 contact-info">
+          <div class="w-100"></div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Ім'я:</span> {{ form.first_name }}</p>
+	          </div>
+          </div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Прізвище:</span> {{ form.last_name }}</p>
+	          </div>
+          </div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Email:</span> {{ form.email }}</p>
+	          </div>
+          </div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span></span>Номер Телефону {{ form.username }}</p>
+	          </div>
+          </div>
+        </div>
+      </div>
+                    {% include 'product/cart.html' %}
+
+			<div class="container">
+    		<div class="row justify-content-end">
+    			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+    				<div class="cart-total mb-3">
+    					<h3>Вкажіть вашу Карту</h3>
+    					<p>Онлайн оплата (visa / mastercard)</p>
+  							<form action="#" class="info">
+	              <div class="form-group">
+	              	<label for="">Номер Карти</label>
+	                <input type="text" class="form-control text-left px-3" placeholder="1234 5678 9123 4567">
+	              </div>
+	              <div class="form-group">
+	              	<label for="">Дата </label>
+	                <input type="text" class="form-control text-left px-3" placeholder="01/02">
+	              </div>
+	              <div class="form-group">
+	              	<label for="">CVV</label>
+	                <input type="text" class="form-control text-left px-3" placeholder="123">
+	              </div>
+	            </form>
+    				</div>
+    				<p><a href="{% url 'confirm' %}" class="btn btn-primary py-3 px-4">Купити</a></p>
+    			</div>
+    			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+    				<div class="cart-total mb-3">
+    					<h3>Сума Кошика</h3>
+
+    					<hr>
+    				<p class="d-flex total-price">
+    						<span>До оплати:  </span>
+    						<span>{{ carts.total_sum }}</span>
+    					</p>
+    				</div>
+
+    			</div>
+    		</div>
+			</div>
+		</section>
+
+{% endblock content %}
